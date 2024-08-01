@@ -9,10 +9,18 @@ export default function NavBar({ setCategory }) {
     return (
         <nav className="categoryNav">
             <ul className="wrapper navBar">
-                <li className="categoryLi">New Arrivals</li>
-                <li className="categoryLi">Sneakers</li>
-                <li className="categoryLi">Dress Shoes</li>
-                <li className="categoryLi">Boots</li>
+                <li className="categoryLi" onClick={chosenCategory}>
+                    New Arrivals
+                </li>
+                <li className="categoryLi" onClick={chosenCategory}>
+                    Sneakers
+                </li>
+                <li className="categoryLi" onClick={chosenCategory}>
+                    Dress Shoes
+                </li>
+                <li className="categoryLi" onClick={chosenCategory}>
+                    Boots
+                </li>
 
                 <li className="hamburger"></li>
             </ul>
