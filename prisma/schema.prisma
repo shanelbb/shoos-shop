@@ -1,0 +1,82 @@
+// schema.prisma
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url = env("POSTGRES_PRISMA_URL") // uses connection pooling
+  directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
+}
+
+model Product {
+  id              Int            @id @default(autoincrement())
+  style           String
+  description     String
+  brand           String
+  category        String
+  price           Int
+  sizes           Int[]
+  image_url       String
+  new_arrival     Boolean        @default(false)
+  avg_star_rating Int
+  seeItOnImages   SeeItOn_Image[]  // Opposite relation field
+  reviews         Review[]         // Opposite relation field
+  addedItems      Added_Item[]     // Opposite relation field
+}
+
+model SeeItOn_Image {
+  id              Int       @id @default(autoincrement())
+  sio_url         String
+  product         Product   @relation(fields: [product_id], references: [id])
+  product_id      Int        
+}
+
+model Review {
+  id          Int        @id @default(autoincrement())
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+  message     String
+  star_rating Int
+  product     Product    @relation(fields: [product_id], references: [id])
+  product_id  Int        
+  user        User       @relation(fields: [user_id], references: [id])
+  user_id     Int        
+}
+
+model User {
+  id            Int       @id @default(autoincrement())
+  name          String?
+  email         String?   @unique
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  reviews       Review[]  // Opposite relation field
+  shoppingBags  Shopping_Bag[]
+  @@map(name: "users")
+}
+
+model Added_Item {
+  id                Int           @id @default(autoincrement())
+  unit_quantity     Int
+  size              Int
+  total_unit_price  Int
+  product           Product       @relation(fields: [product_id], references: [id]) 
+  product_id        Int
+  shopping_bag      Shopping_Bag  @relation(fields: [bag_id], references: [id])
+  bag_id            Int       
+}
+
+model Shopping_Bag {
+  id                  Int       @id @default(autoincrement())
+  all_items_quantity  Int
+  total_price         Int       @default(0)
+  completed           Boolean   @default(false)
+  user                User      @relation(fields: [user_id], references: [id])
+  user_id             Int
+  addedItems          Added_Item[] // Opposite relation field       
+  createdAt           DateTime  @default(now())
+  updatedAt           DateTime  @updatedAt()
+}
+
+  
