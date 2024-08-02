@@ -2,7 +2,7 @@ import { useState } from "react";
 import Head from "next/head";
 import shoeInfo from "@/shoeInfo";
 // import styles from "@/styles/Home.module.css";
-import LandingPage from "@/components/landingPage";
+import LandingPage from "@/components/LandingPage";
 // import prisma from "../lib/prisma";
 
 export default function Home() {
