@@ -7,7 +7,12 @@ export default function LandingPage() {
 
     return (
         <>
-            <div className="banner landingBanner1">
+            <div
+                className="banner"
+                style={{
+                    backgroundImage: 'url("./assets/banners/newArrivals.jpg")',
+                }}
+            >
                 <Link
                     href={{
                         pathname: "/gallery",
@@ -18,7 +23,12 @@ export default function LandingPage() {
                 </Link>
             </div>
 
-            <div className="banner landingBanner2">
+            <div
+                className="banner"
+                style={{
+                    backgroundImage: 'url("./assets/banners/sneakers.jpg")',
+                }}
+            >
                 <Link
                     href={{
                         pathname: "/gallery",
@@ -28,7 +38,12 @@ export default function LandingPage() {
                     <h2>Sneakers</h2>
                 </Link>
             </div>
-            <div className="banner landingBanner3">
+            <div
+                className="banner"
+                style={{
+                    backgroundImage: 'url("./assets/banners/dressShoes.jpg")',
+                }}
+            >
                 <Link
                     href={{
                         pathname: "/gallery",
@@ -38,7 +53,10 @@ export default function LandingPage() {
                     <h2>Dress Shoes</h2>
                 </Link>
             </div>
-            <div className="banner landingBanner4">
+            <div
+                className="banner"
+                style={{ backgroundImage: 'url("./assets/banners/boots.jpg")' }}
+            >
                 <Link
                     href={{
                         pathname: "/gallery",
