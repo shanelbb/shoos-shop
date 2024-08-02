@@ -2,15 +2,15 @@ export default function Category({ category }) {
     let css;
 
     switch (category) {
-        case "Sneakers":
+        case "sneakers":
             css = { backgroundImage: `url("./assets/banners/sneakers.jpg")` };
             break;
-        case "Dress Shoes":
+        case "dress shoes":
             css = {
                 backgroundImage: `url("./assets/banners/dressShoes.jpg")`,
             };
             break;
-        case "Boots":
+        case "boots":
             css = { backgroundImage: `url("./assets/banners/boots.jpg")` };
             break;
         default:

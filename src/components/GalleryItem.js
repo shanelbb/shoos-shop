@@ -2,14 +2,12 @@ import Image from "next/image";
 
 export default function GalleryItem(props) {
     const { shoe, category } = props;
-    const lowerCategory = category.toLowerCase();
-
-    console.log(shoe, lowerCategory);
+    console.log(category);
 
     return (
         <>
-            {shoe.category === lowerCategory ||
-            (shoe.newArrival === true && lowerCategory === "new arrivals") ? (
+            {shoe.category === category ||
+            (shoe.newArrival === true && category === "new arrivals") ? (
                 <div className="galleryItem">
                     <p className="brand">{shoe.brand}</p>
                     <p className="style">{shoe.style}</p>
