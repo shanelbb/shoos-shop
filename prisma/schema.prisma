@@ -13,14 +13,14 @@ datasource db {
 model Product {
   id              Int            @id @default(autoincrement())
   style           String
-  description     String
+  description     String?
   brand           String
   category        String
   price           Int
   sizes           Int[]
   image_url       String
   new_arrival     Boolean        @default(false)
-  avg_star_rating Int
+  avg_star_rating Float
   seeItOnImages   SeeItOn_Image[]  // Opposite relation field
   reviews         Review[]         // Opposite relation field
   addedItems      Added_Item[]     // Opposite relation field
