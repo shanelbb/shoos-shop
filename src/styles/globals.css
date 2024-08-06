@@ -1,238 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Gruppo&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
 
 html {
-    line-height: 1.15;
-    -ms-text-size-adjust: 100%;
-    -webkit-text-size-adjust: 100%;
-}
-
-body {
-    margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
-        "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
-        "Helvetica Neue", sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
-code {
-    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-        monospace;
-}
-
-article,
-aside,
-footer,
-header,
-nav,
-section {
-    display: block;
-}
-h1 {
-    font-family: "Gruppo", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-    font-size: 2em;
-    margin: 0.67em 0;
-}
-figcaption,
-figure,
-main {
-    display: block;
-}
-figure {
-    margin: 1em 40px;
-}
-hr {
-    box-sizing: content-box;
-    height: 0;
-    overflow: visible;
-}
-pre {
-    font-family: monospace, monospace;
-    font-size: 1em;
-}
-a {
-    background-color: transparent;
-    -webkit-text-decoration-skip: objects;
-}
-abbr[title] {
-    border-bottom: none;
-    text-decoration: underline;
-    text-decoration: underline dotted;
-}
-b,
-strong {
-    font-weight: inherit;
-}
-b,
-strong {
-    font-weight: bolder;
-}
-code,
-kbd,
-samp {
-    font-family: monospace, monospace;
-    font-size: 1em;
-}
-dfn {
-    font-style: italic;
-}
-mark {
-    background-color: #ff0;
-    color: #000;
-}
-small {
-    font-size: 80%;
-}
-sub,
-sup {
-    font-size: 75%;
-    line-height: 0;
-    position: relative;
-    vertical-align: baseline;
-}
-sub {
-    bottom: -0.25em;
-}
-sup {
-    top: -0.5em;
-}
-audio,
-video {
-    display: inline-block;
-}
-audio:not([controls]) {
-    display: none;
-    height: 0;
-}
-img {
-    border-style: none;
-}
-svg:not(:root) {
-    overflow: hidden;
-}
-button,
-input,
-optgroup,
-select,
-textarea {
-    font-family: sans-serif;
-    font-size: 100%;
-    line-height: 1.15;
-    margin: 0;
-}
-button,
-input {
-    overflow: visible;
-}
-button,
-select {
-    text-transform: none;
-}
-button,
-html [type="button"],
-[type="reset"],
-[type="submit"] {
-    -webkit-appearance: button;
-}
-button::-moz-focus-inner,
-[type="button"]::-moz-focus-inner,
-[type="reset"]::-moz-focus-inner,
-[type="submit"]::-moz-focus-inner {
-    border-style: none;
-    padding: 0;
-}
-button:-moz-focusring,
-[type="button"]:-moz-focusring,
-[type="reset"]:-moz-focusring,
-[type="submit"]:-moz-focusring {
-    outline: 1px dotted ButtonText;
-}
-fieldset {
-    padding: 0.35em 0.75em 0.625em;
-}
-legend {
-    box-sizing: border-box;
-    color: inherit;
-    display: table;
-    max-width: 100%;
-    padding: 0;
-    white-space: normal;
-}
-progress {
-    display: inline-block;
-    vertical-align: baseline;
-}
-textarea {
-    overflow: auto;
-}
-[type="checkbox"],
-[type="radio"] {
-    box-sizing: border-box;
-    padding: 0;
-}
-[type="number"]::-webkit-inner-spin-button,
-[type="number"]::-webkit-outer-spin-button {
-    height: auto;
-}
-[type="search"] {
-    -webkit-appearance: textfield;
-    outline-offset: -2px;
-}
-[type="search"]::-webkit-search-cancel-button,
-[type="search"]::-webkit-search-decoration {
-    -webkit-appearance: none;
-}
-::-webkit-file-upload-button {
-    -webkit-appearance: button;
-    font: inherit;
-}
-details,
-menu {
-    display: block;
-}
-summary {
-    display: list-item;
-}
-canvas {
-    display: inline-block;
-}
-template {
-    display: none;
-}
-[hidden] {
-    display: none;
-}
-
-.clearfix:after {
-    visibility: hidden;
-    display: block;
-    font-size: 0;
-    content: "";
-    clear: both;
-    height: 0;
-}
-
-* {
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-}
-
-.visuallyHidden:not(:focus):not(:active) {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    margin: -1px;
-    border: 0;
-    padding: 0;
-    white-space: nowrap;
-    clip-path: inset(100%);
-    clip: rect(00 0 0);
-    overflow: hidden;
-}
-
-html {
     font-size: 125%;
 }
 
@@ -267,8 +35,8 @@ a {
 }
 
 .wrapper {
-    max-width: 1150px;
-    width: 80%;
+    max-width: 1450px;
+    width: 90%;
     margin: 0 auto;
 }
 
@@ -488,7 +256,7 @@ a {
 .gallery {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-gap: 20px;
+    grid-gap: 1rem;
     margin: 50px auto;
 }
 
@@ -500,6 +268,7 @@ a {
 
 .shoeImg {
     cursor: pointer;
+    max-height: 400px;
 }
 
 .galleryItem p {
@@ -510,9 +279,9 @@ a {
 .brand,
 .price,
 .qty,
-.size {
+.sizeForm {
     font-weight: bold;
-    font-size: 0.8rem;
+    font-size: 1rem;
 }
 
 .style {
@@ -545,29 +314,69 @@ a {
     margin-left: 2px;
 }
 
-.dropdowns {
+.galleryItemInputs {
     margin: 10px 0;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    justify-content: space-between;
+    grid-template-columns: repeat(2, 1fr);
     grid-gap: 10px;
+}
+
+.setQuantity {
+    padding: 10px 0 10px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.setQuantity label,
+.sizeForm label {
+    padding-right: 10px;
+}
+
+.setQuantity button {
+    background-color: #000;
+    color: #fff;
+    font-size: 1rem;
+    line-height: 0;
+    outline: none;
+    border: none;
+    width: 25px;
+    height: 30px;
+    font-family: Helvetice, sans-serif;
+}
+
+.qtyValue {
+    width: 40px;
+    height: 30px;
+    text-align: center;
+    padding: 0 5px;
+    margin: 0 5px;
+}
+
+.sizeForm {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 10px 0;
 }
 
 .selects {
     border: 1px solid rgba(0, 0, 0, 0.3);
-    padding: 5px;
+    padding: 2px 5px;
     text-transform: uppercase;
     font-weight: lighter;
-    font-size: 0.8rem;
+    font-size: 1rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 75px;
 }
 
 .selects select {
     border: none;
     appearance: none;
-    width: 50px;
-    max-width: 50%;
+    width: 60px;
     background-image: url(.././assets/chevron.png);
     background-size: 20px;
     background-repeat: no-repeat;
@@ -689,25 +498,26 @@ footer {
     text-align: center;
 }
 
-footer h3 {
+footer a {
+    color: #fff;
+    text-decoration: underline;
+}
+
+.footerLogo a {
+    text-decoration: none;
+}
+
+.footerLogo h3 {
     font-family: "Gruppo", sans-serif;
     font-size: 4rem;
     margin: 0 0 20px 0;
+    font-weight: normal;
 }
 
 footer p {
     margin: 0;
     padding: 10px;
     font-weight: lighter;
-}
-
-footer a {
-    color: #fff;
-    text-decoration: underline;
-}
-
-.footerLogo {
-    text-decoration: none;
 }
 
 .siteInfo a:hover,
