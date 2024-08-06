@@ -11,19 +11,18 @@ datasource db {
 }
 
 model Product {
-  id              Int            @id @default(autoincrement())
+  id              Int              @id @default(autoincrement())
   style           String
-  description     String?
   brand           String
   category        String
-  price           Int
-  sizes           Int[]
+  price           Float
+  sizes           Int[]            @default ([6,7,8,9,10,11])
   image_url       String
-  new_arrival     Boolean        @default(false)
-  avg_star_rating Float
-  seeItOnImages   SeeItOn_Image[]  // Opposite relation field
-  reviews         Review[]         // Opposite relation field
-  addedItems      Added_Item[]     // Opposite relation field
+  new_arrival     Boolean          @default(false)
+  avg_star_rating Float            @default(0)
+  seeItOnImages   SeeItOn_Image[]
+  reviews         Review[]   
+  addedItems      Added_Item[]   
 }
 
 model SeeItOn_Image {
@@ -51,7 +50,7 @@ model User {
   email         String?   @unique
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
-  reviews       Review[]  // Opposite relation field
+  reviews       Review[]
   shoppingBags  Shopping_Bag[]
   @@map(name: "users")
 }
@@ -60,7 +59,7 @@ model Added_Item {
   id                Int           @id @default(autoincrement())
   unit_quantity     Int
   size              Int
-  total_unit_price  Int
+  total_unit_price  Float
   product           Product       @relation(fields: [product_id], references: [id]) 
   product_id        Int
   shopping_bag      Shopping_Bag  @relation(fields: [bag_id], references: [id])
@@ -68,15 +67,15 @@ model Added_Item {
 }
 
 model Shopping_Bag {
-  id                  Int       @id @default(autoincrement())
+  id                  Int          @id @default(autoincrement())
   all_items_quantity  Int
-  total_price         Int       @default(0)
-  completed           Boolean   @default(false)
-  user                User      @relation(fields: [user_id], references: [id])
+  total_price         Int          @default(0)
+  completed           Boolean      @default(false)
+  user                User         @relation(fields: [user_id], references: [id])
   user_id             Int
-  addedItems          Added_Item[] // Opposite relation field       
-  createdAt           DateTime  @default(now())
-  updatedAt           DateTime  @updatedAt()
+  addedItems          Added_Item[]      
+  createdAt           DateTime     @default(now())
+  updatedAt           DateTime     @updatedAt()
 }
 
   
