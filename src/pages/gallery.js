@@ -4,8 +4,7 @@ import GalleryItem from "@/components/GalleryItem";
 import { useRouter } from "next/router";
 // import { list } from "@vercel/blob";
 
-export default async function Gallery() {
-  // const response = await list();
+export default function Gallery() {
   const router = useRouter();
   const { category } = router.query;
   console.log(category);
