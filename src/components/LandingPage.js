@@ -1,9 +1,12 @@
 import Link from "next/link";
 import "@/styles/LandingPage.module.css";
+import Header from "./Header";
+import Footer from "./Footer";
 
 export default function LandingPage() {
   return (
     <>
+      <Header />
       <div
         className='banner'
         style={{
@@ -60,6 +63,7 @@ export default function LandingPage() {
           <h2>Boots</h2>
         </Link>
       </div>
+      <Footer />
     </>
   );
 }
