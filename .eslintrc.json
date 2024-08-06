@@ -3,7 +3,6 @@
   "rules": {
     "react/react-in-jsx-scope": "off",
     "react/prop-types": 0,
-    "quotes": "off",
-    "allowTemplateLiterals": true
+    "quotes": "off"
   }
 }
