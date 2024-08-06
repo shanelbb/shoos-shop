@@ -1,5 +1,6 @@
 import Image from "next/image";
 
+/* eslint-disable react/prop-types */
 export default function GalleryItem({ shoe, category }) {
   return (
     <>
@@ -27,3 +28,4 @@ export default function GalleryItem({ shoe, category }) {
     </>
   );
 }
+/* eslint-enable react/prop-types */
