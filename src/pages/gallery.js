@@ -2,8 +2,10 @@ import Category from "@/components/Category";
 import shoeInfo from "@/shoeInfo";
 import GalleryItem from "@/components/GalleryItem";
 import { useRouter } from "next/router";
+// import { list } from "@vercel/blob";
 
-export default function Gallery() {
+export default async function Gallery() {
+  // const response = await list();
   const router = useRouter();
   const { category } = router.query;
   console.log(category);

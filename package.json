@@ -2,6 +2,9 @@
   "name": "shoos-shop",
   "version": "0.1.0",
   "private": true,
+  "prisma": {
+    "seed": "node prisma/seed.js"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -10,6 +13,7 @@
   },
   "dependencies": {
     "@prisma/client": "^5.17.0",
+    "@vercel/blob": "^0.23.4",
     "@vercel/postgres": "^0.9.0",
     "next": "14.2.5",
     "react": "^18",
