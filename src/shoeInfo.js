@@ -11,7 +11,6 @@ const shoeInfo = [
   },
   {
     category: "sneakers",
-    subCategory: "new arrivals",
     brand: "Puma",
     style: "GV Special+ Sneaker",
     price: 104.99,
@@ -42,7 +41,6 @@ const shoeInfo = [
   },
   {
     category: "sneakers",
-    subCategory: "new arrivals",
     brand: "DNA Athletics",
     style: "Cruise Rider Sneaker",
     price: 194.99,
@@ -73,7 +71,6 @@ const shoeInfo = [
   },
   {
     category: "sneakers",
-    subCategory: "new arrivals",
     brand: "Calvin Klein",
     style: "Solaris Sneaker",
     price: 214.99,
@@ -84,7 +81,6 @@ const shoeInfo = [
   },
   {
     category: "sneakers",
-    subCategory: "new arrivals",
     brand: "Nike",
     style: "Revolution 8 Sneaker",
     price: 134.99,
@@ -106,7 +102,6 @@ const shoeInfo = [
   },
   {
     category: "dress shoes",
-    subCategory: "new arrivals",
     brand: "Aldo",
     style: "Cobalt Classic Pump",
     price: 74.99,
@@ -157,7 +152,6 @@ const shoeInfo = [
   },
   {
     category: "dress shoes",
-    subCategory: "new arrivals",
     brand: "Michael Kors",
     style: "Desert Chic Bootie",
     price: 314.99,
@@ -178,7 +172,6 @@ const shoeInfo = [
   },
   {
     category: "dress shoes",
-    subCategory: "new arrivals",
     brand: "Chie Mihar",
     style: "Soft Blush Ballet Flat",
     price: 174.99,
@@ -199,7 +192,6 @@ const shoeInfo = [
   },
   {
     category: "boots",
-    subCategory: "new arrivals",
     brand: "Timberland",
     style: "Classic Boot - Rouge",
     price: 169.99,
@@ -230,7 +222,6 @@ const shoeInfo = [
   },
   {
     category: "boots",
-    subCategory: "new arrivals",
     brand: "Moncler",
     style: "Ridge Hiking Boot",
     price: 144.99,
