@@ -10,7 +10,15 @@ export default function GalleryItem(props) {
   const [selectedSize, setSelectedSize] = useState("6");
 
   const updateItem = () => {
-    setItemOrder([{ shoe, quantity, selectedSize }]);
+    const itemData = {
+      brand: shoe.brand,
+      style: shoe.style,
+      src: shoe.image_url,
+      price: shoe.price,
+      size: selectedSize,
+      quantity: quantity,
+    };
+    setItemOrder(itemData);
     addToBag();
   };
 

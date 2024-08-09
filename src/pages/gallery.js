@@ -23,8 +23,8 @@ export default function Gallery() {
 
   const addToBag = () => {
     console.log(itemOrder);
-    const newOrderData = orderData.length > 0 ? [...orderData] : [];
-    const newItem = itemOrder;
+    const newOrderData = orderData.length > 0 ? { ...orderData } : [];
+    const newItem = { ...itemOrder };
     newOrderData.push(newItem);
     setOrderData(newOrderData);
     console.log(orderData);
