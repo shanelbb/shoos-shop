@@ -17,7 +17,7 @@ export default function ShoppingBag(props) {
                 <div>
                   <p className='brand'>{shoe.brand}</p>
                   <p className='style'>{shoe.style}</p>
-                  <p className='size'>Size: {shoe}</p>
+                  <p className='size'>Size: {shoe.size}</p>
                 </div>
                 <div>
                   <p className='qty'>Qty</p>
