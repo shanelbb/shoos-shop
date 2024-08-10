@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+// import { useEffect } from "react";
 
 /* eslint-disable react/prop-types */
 export default function ShoppingBag(props) {

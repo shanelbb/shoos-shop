@@ -8,7 +8,7 @@ import { useState, useEffect } from "react";
 export default function Gallery() {
   const router = useRouter();
   const { category } = router.query;
-  const [itemOrder, setItemOrder] = useState([]);
+  const [itemOrder, setItemOrder] = useState(null);
   const [orderData, setOrderData] = useState([]);
   const [productInfo, setProductInfo] = useState([]);
 
@@ -21,22 +21,25 @@ export default function Gallery() {
       });
   }, [category]);
 
-  const addToBag = () => {
-    console.log(itemOrder);
-    const newOrderData = orderData.length > 0 ? { ...orderData } : [];
-    const newItem = { ...itemOrder };
-    newOrderData.push(newItem);
-    setOrderData(newOrderData);
-    console.log(orderData);
-  };
+  useEffect(() => {
+    console.log("itemOrder", itemOrder);
+    // handle the itemOrder in the setOrderData - array of objects
+    if (itemOrder) {
+      setOrderData([...orderData, itemOrder]);
+    }
+  }, [itemOrder]);
+
+  useEffect(() => {
+    console.log("orderData", orderData);
+  }, [orderData]);
 
   return (
     <>
-      <Header itemOrder={itemOrder} orderData={orderData} addToBag={addToBag} />
+      <Header itemOrder={itemOrder} orderData={orderData} />
       <Category category={category} />
       <div className='gallery wrapper'>
         {productInfo.map((shoe, index) => {
-          return <GalleryItem shoe={shoe} key={index} category={category} itemOrder={itemOrder} setItemOrder={setItemOrder} addToBag={addToBag} />;
+          return <GalleryItem shoe={shoe} key={index} category={category} setItemOrder={setItemOrder} />;
         })}
       </div>
       <Footer />
