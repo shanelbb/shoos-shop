@@ -1,13 +1,14 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import SelectQuantity from "./SelectQuantity";
 import SelectSize from "./SelectSize";
 
 /* eslint-disable react/prop-types */
 export default function GalleryItem(props) {
-  const { shoe, category, setItemOrder, addToBag } = props;
+  const { shoe, category, setItemOrder } = props;
   const [quantity, setQuantity] = useState(0);
   const [selectedSize, setSelectedSize] = useState("6");
+  const [sioImages, setSIOImages] = useState([]);
 
   const updateItem = () => {
     const itemData = {
@@ -19,8 +20,16 @@ export default function GalleryItem(props) {
       quantity: quantity,
     };
     setItemOrder(itemData);
-    addToBag();
   };
+
+  useEffect(() => {
+    fetch("./api/fetchSIOUrls")
+      .then(res => res.json())
+      .then(data => {
+        const { sio_urls } = data;
+        setSIOImages(sio_urls);
+      });
+  }, [category]);
 
   return (
     <>

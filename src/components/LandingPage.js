@@ -1,5 +1,4 @@
 import Link from "next/link";
-import "@/styles/LandingPage.module.css";
 import Header from "./Header";
 import Footer from "./Footer";
 
