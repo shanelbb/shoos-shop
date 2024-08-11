@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import { useRouter } from "next/router";
 import Image from "next/image";
 import SelectQuantity from "./SelectQuantity";
 import SelectSize from "./SelectSize";
@@ -8,7 +9,7 @@ export default function GalleryItem(props) {
   const { shoe, category, setItemOrder } = props;
   const [quantity, setQuantity] = useState(0);
   const [selectedSize, setSelectedSize] = useState("6");
-  const [sioImages, setSIOImages] = useState([]);
+  const router = useRouter();
 
   const updateItem = () => {
     const itemData = {
@@ -22,23 +23,18 @@ export default function GalleryItem(props) {
     setItemOrder(itemData);
   };
 
-  useEffect(() => {
-    fetch("./api/fetchSIOUrls")
-      .then(res => res.json())
-      .then(data => {
-        const { sio_urls } = data;
-        setSIOImages(sio_urls);
-      });
-  }, [category]);
+  const handleProductClick = () => {
+    router.push(`/product/${shoe.id}`);
+  };
 
   return (
     <>
-      {shoe.category === category || (shoe.new_arrival === true && category === "new arrivals") ? (
-        <div className='galleryItem'>
-          <p className='brand'>{shoe.brand}</p>
-          <p className='style'>{shoe.style}</p>
+      {shoe.category === category || (shoe.new_arrival && category === "new arrivals") ? (
+        <div className="galleryItem" onClick={handleProductClick} style={{ cursor: "pointer" }}>
+          <p className="brand">{shoe.brand}</p>
+          <p className="style">{shoe.style}</p>
           <Image
-            className='shoeImg'
+            className="shoeImg"
             src={shoe.image_url}
             alt={shoe.style}
             width={200}
@@ -46,17 +42,16 @@ export default function GalleryItem(props) {
             style={{
               width: "100%",
               height: "auto",
-              cursor: "pointer",
               objectFit: "cover",
             }}
           />
-          <p className='price'>${shoe.price}</p>
-          <div className='galleryItemInputs'>
-            <SelectQuantity quantity={quantity} setQuantity={setQuantity}></SelectQuantity>
-            <SelectSize selectedSize={selectedSize} setSelectedSize={setSelectedSize}></SelectSize>
+          <p className="price">${shoe.price}</p>
+          <div className="galleryItemInputs">
+            <SelectQuantity quantity={quantity} setQuantity={setQuantity} />
+            <SelectSize selectedSize={selectedSize} setSelectedSize={setSelectedSize} />
           </div>
 
-          <button className='addToBag galleryAdd' onClick={updateItem}>
+          <button className="addToBag galleryAdd" onClick={updateItem}>
             Add To Bag
           </button>
         </div>
