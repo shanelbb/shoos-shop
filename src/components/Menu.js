@@ -51,12 +51,11 @@ export default function Menu({ toggleMenu }) {
                         Boots
                     </li>
                 </Link>
-                <li className="menuLi" onClick={toggleMenu}>
-                    About Us
-                </li>
-                <li className="menuLi" onClick={toggleMenu}>
-                    Contact Us
-                </li>
+                <Link href="/about">
+                    <li className="menuLi" onClick={toggleMenu}>
+                        About Us
+                    </li>
+                </Link>
             </ul>
         </>
     );

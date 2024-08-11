@@ -53,7 +53,7 @@ model Added_Item {
 }
 
 model Shopping_Bag {
-  id                 Int          @id @default(autoincrement())
+  id                 Int          @id 
   all_items_quantity Int
   total_price        Int          @default(0)
   completed          Boolean      @default(false)
