@@ -41,7 +41,12 @@ export default function Checkout(props) {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <div className='outerWrapper'>
-        <div className='banner checkoutBanner'>
+        <div
+          className='banner checkoutBanner'
+          style={{
+            backgroundImage: 'url("https://krwzqpaj7utmeydl.public.blob.vercel-storage.com/banners/aboutUsBanner-bkRtuyvIna278vVgeJOajZgntDH8gj.jpg")',
+          }}
+        >
           <h2 className='category'>Checkout</h2>
         </div>
         <div className='wrapper'>

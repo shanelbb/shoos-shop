@@ -9,7 +9,12 @@ export default function About() {
   return (
     <>
       <div className='outerWrapper'>
-        <div className='banner aboutBanner'>
+        <div
+          className='banner aboutBanner'
+          style={{
+            backgroundImage: 'url("https://krwzqpaj7utmeydl.public.blob.vercel-storage.com/banners/contactUs-j0Yd9ydyCc30eU504BthhPOCIH1jX7.jpg")',
+          }}
+        >
           <h2 className='category'>About Us</h2>
         </div>
         <div className='wrapper'>
@@ -23,7 +28,7 @@ export default function About() {
           <section className='aboutImgAndQuote'>
             <div className='aboutImg'>
               <Image
-                src='/./assets/banners/aboutUsImg.jpg'
+                src='https://krwzqpaj7utmeydl.public.blob.vercel-storage.com/banners/aboutUsImg-ZzNyl8KoRSUJ1RrpoS08U69jRSoRVv.jpg'
                 width={650}
                 height={350}
                 sstyle={{
