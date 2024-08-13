@@ -1,6 +1,3 @@
-import { set } from "mongoose";
-import { useEffect } from "react";
-
 /* eslint-disable react/prop-types */
 export default function SelectQuantity(props) {
   const { quantity, setQuantity } = props;
