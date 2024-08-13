@@ -1,95 +1,62 @@
 import Category from "@/components/Category";
 import GalleryItem from "@/components/GalleryItem";
 import { useRouter } from "next/router";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
-export default function Gallery() {
-    const router = useRouter();
-    const { category } = router.query;
-    const [itemOrder, setItemOrder] = useState(null);
-    const [orderData, setOrderData] = useState([]);
-    const [orderTotal, setOrderTotal] = useState(0);
-    const [productInfo, setProductInfo] = useState([]);
-    const [error, setError] = useState("");
+/* eslint-disable react/prop-types */
+export default function Gallery(props) {
+  const { itemOrder, setItemOrder, orderData, setOrderData, productInfo, setProductInfo, setOrderTotal, setProduct } = props;
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const router = useRouter();
+  const { category } = router.query;
 
-    useEffect(() => {
-        fetch("./api/fetchProducts")
-            .then(res => res.json())
-            .then(data => {
-                const { products } = data;
-                setProductInfo(products);
-            });
-    }, [category]);
+  useEffect(() => {
+    fetch("./api/fetchProducts")
+      .then(res => res.json())
+      .then(data => {
+        const { products } = data;
+        setProductInfo(products);
+        setLoading(false);
+      })
+      .catch(err => {
+        setError(err);
+        return <p className='errorMessage'>Sorry! We are having trouble displaying the shoos. </p>;
+      });
+  }, [category]);
 
-    // useEffect(() => {
-    //     let sum = 0;
-    //     orderData.forEach(item => (sum += item.price));
-    //     setOrderTotal(sum);
-    // }, [orderData]);
+  // useEffect(() => {
+  //     let sum = 0;
+  //     orderData.forEach(item => (sum += item.price));
+  //     setOrderTotal(sum);
+  // }, [orderData]);
 
-    useEffect(() => {
-        // handle the itemOrder in the setOrderData - array of objects
-        if (itemOrder) {
-            for (const item of orderData) {
-                if (
-                    item.style === itemOrder.style &&
-                    item.size === itemOrder.size
-                ) {
-                    item.quantity += itemOrder.quantity;
-                    item.price += parseFloat(
-                        (itemOrder.price * itemOrder.quantity).toFixed(2)
-                    );
-                    setOrderData(orderData);
-                    return;
-                }
-            }
-            setOrderData([...orderData, itemOrder]);
-            const new_id = Date.now();
-            addOrderDetails(new_id);
-            addItemDetails(new_id);
+  useEffect(() => {
+    // handle the itemOrder in the setOrderData - array of objects
+    if (itemOrder) {
+      for (const item of orderData) {
+        if (item.style === itemOrder.style && item.size === itemOrder.size) {
+          item.quantity += itemOrder.quantity;
+          item.price += parseFloat((itemOrder.price * itemOrder.quantity).toFixed(2));
+          setOrderData(orderData);
+          return;
         }
-    }, [itemOrder]);
+      }
+      setOrderData([...orderData, itemOrder]);
+    }
+  }, [itemOrder]);
 
-    const addOrderDetails = async bag_id => {
-        const body = { orderData, bag_id };
+  if (loading) return <p className='loading'>Loading...</p>;
+  if (error) return <p className='errorMessage'>{error}</p>;
 
-        const response = await fetch("/api/post/addOrder", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(body),
-        });
-        const data = await response.json();
-    };
-
-    const addItemDetails = async bag_id => {
-        const body = { itemOrder, bag_id };
-        const response = await fetch("/api/post/addItem", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(body),
-        });
-        const data = await response.json();
-    };
-
-    return (
-        <>
-            <Header orderData={orderData} orderTotal={orderTotal} />
-            <Category category={category} />
-            <div className="gallery wrapper">
-                {productInfo.map((shoe, index) => {
-                    return (
-                        <GalleryItem
-                            shoe={shoe}
-                            key={index}
-                            category={category}
-                            setItemOrder={setItemOrder}
-                        />
-                    );
-                })}
-            </div>
-            <Footer />
-        </>
-    );
+  return (
+    <>
+      <Category category={category} />
+      <div className='gallery wrapper'>
+        {productInfo.map((shoe, index) => {
+          return <GalleryItem shoe={shoe} key={index} category={category} setItemOrder={setItemOrder} setProduct={setProduct} />;
+        })}
+      </div>
+    </>
+  );
 }
