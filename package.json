@@ -5,6 +5,7 @@
   "prisma": {
     "seed": "node prisma/seed.js"
   },
+  "postinstall": "prisma generate",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
