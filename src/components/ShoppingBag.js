@@ -1,11 +1,15 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 /* eslint-disable react/prop-types */
 export default function ShoppingBag(props) {
-  const { orderData, orderTotal, css, setOpen } = props;
+  const { itemOrder, orderData, orderTotal, css, setOpen } = props;
+
+  const [shoppingBag, setShoppingBag] = useState();
 
   const ref = useRef(null);
+
   useEffect(() => {
     const handleOutSideClick = event => {
       if (!ref.current?.contains(event.target)) {
@@ -35,19 +39,23 @@ export default function ShoppingBag(props) {
           orderData.map((shoe, index) => {
             return (
               <div className='shoppingContentItem' key={index}>
-                <img src={shoe.src} alt='' />
-                <div>
-                  <p className='brand'>{shoe.brand}</p>
-                  <p className='style'>{shoe.style}</p>
-                  <p className='size'>Size: {shoe.size}</p>
-                </div>
-                <div>
-                  <p className='qty'>Qty</p>
-                  <p className='price'>Price</p>
-                </div>
-                <div>
-                  <p className='qty qtyNum'>{shoe.quantity}</p>
-                  <p className='price'>{shoe.price}</p>
+                <Image src={shoe.src} alt={shoe.style} width={200} height={200} style={{ width: "200px", maxWidth: "200px", objectFit: "cover" }} />
+                <div className='orderDetails' key={index}>
+                  <div>
+                    <p className='brand'>{shoe.brand}</p>
+                    <p className='style'>{shoe.style}</p>
+                    <p className='size'>Size: {shoe.size}</p>
+                  </div>
+                  <div className='itemSummary'>
+                    <div>
+                      <p className='qty'>Qty</p>
+                      <p className='price'>Price</p>
+                    </div>
+                    <div className='itemTotals'>
+                      <p className='qty qtyNum'>{shoe.quantity}</p>
+                      <p className='price'>${shoe.price}</p>
+                    </div>
+                  </div>
                 </div>
               </div>
             );
@@ -62,7 +70,9 @@ export default function ShoppingBag(props) {
       </div>
       <div className='shoppingBtns'>
         <Link href='/checkout'>
-          <button className='checkoutBtn'>Checkout</button>
+          <button className='checkoutBtn' onClick={() => setOpen(false)}>
+            Checkout
+          </button>
         </Link>
         <Link href='/'>
           <button onClick={() => setOpen(false)}>Continue Shopping</button>

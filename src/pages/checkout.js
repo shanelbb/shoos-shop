@@ -1,6 +1,7 @@
 /* eslint-disable react/react-in-jsx-scope */
 // import { useState } from "react";
 import Head from "next/head";
+import Image from "next/image";
 
 /* eslint-disable react/prop-types */
 export default function Checkout(props) {
@@ -55,20 +56,25 @@ export default function Checkout(props) {
             {orderData ? (
               orderData.map((shoe, index) => {
                 return (
-                  <div className='orderDetails' key={index}>
-                    <img src={shoe.src} alt='' />
-                    <div>
-                      <p className='brand'>{shoe.brand}</p>
-                      <p className='style'>{shoe.style}</p>
-                      <p className='size'>Size: {shoe.size}</p>
-                    </div>
-                    <div>
-                      <p className='qty'>Qty</p>
-                      <p className='price'>Price</p>
-                    </div>
-                    <div>
-                      <p className='qty qtyNum'>{shoe.quantity}</p>
-                      <p className='price'>{shoe.price}</p>
+                  <div className='itemOrderSummary' key={index}>
+                    <Image src={shoe.src} alt={shoe.style} width={250} height={250} style={{ width: "100%", maxWidth: "250px", height: "auto", objectFit: "cover" }} />
+                    <div className='orderDetails' key={index}>
+                      <div className='shoeDescription'>
+                        <p className='brand'>{shoe.brand}</p>
+                        <p className='style'>{shoe.style}</p>
+                        <p className='size'>Size: {shoe.size}</p>
+                      </div>
+
+                      <div className='itemSummary'>
+                        <div>
+                          <p className='qty'>Qty</p>
+                          <p className='price'>Price</p>
+                        </div>
+                        <div className='itemTotals'>
+                          <p className='qty qtyNum'>{shoe.quantity}</p>
+                          <p className='price'>${shoe.price}</p>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 );
@@ -76,9 +82,19 @@ export default function Checkout(props) {
             ) : (
               <p>Your Shopping Bag is Empty</p>
             )}
-            <div className='total'>
-              <p>Total:</p>
-              <p>${orderTotal === 0 ? "0.00" : orderTotal}</p>
+            <div className='orderSummary'>
+              <div>
+                <p>Items Qty:</p>
+                <p className='price'>
+                  <strong>Total Price:</strong>
+                </p>
+              </div>
+              <div className='orderTotals'>
+                <p>2</p>
+                <p className='price'>
+                  <strong>$249.99</strong>
+                </p>
+              </div>
             </div>
           </section>
         </div>

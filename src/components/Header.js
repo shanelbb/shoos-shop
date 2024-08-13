@@ -2,12 +2,28 @@ import NavBar from "./NavBar";
 import Image from "next/image";
 import ShopBag from "../assets/shopping-bag.png";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ShoppingBag from "./ShoppingBag";
 
 /* eslint-disable react/prop-types */
 export default function Header(props) {
-  const { orderData, category, setCategory } = props;
+  const { itemOrder, orderData, category, setCategory } = props;
+
+  const [bagCount, setBagCount] = useState(0);
+
+  useEffect(() => {
+    if (orderData) {
+      let qty = 0;
+      orderData.map(item => {
+        qty += item.quantity;
+        setBagCount(qty);
+      });
+    }
+    const icon = document.querySelector(".shoppingBagIcon::after");
+    if (icon) {
+      icon.style.content = `${bagCount}`;
+    }
+  }, [orderData]);
 
   const [open, setOpen] = useState(false);
   const css = open === true ? { transform: `translateY(0vh)` } : { transform: `translateY(-500vh)` };
@@ -21,12 +37,12 @@ export default function Header(props) {
         <Link href='/'>
           <h1>shoos.</h1>
         </Link>
-        <div className='shoppingBagIcon' value='0' onClick={toggleMenu}>
+        <div className='shoppingBagIcon' value={bagCount} onClick={toggleMenu}>
           <Image src={ShopBag} alt='Shopping bag icon' className='shopping' />
         </div>
       </div>
       <NavBar setCategory={setCategory} category={category} />
-      <ShoppingBag css={css} orderData={orderData} setOpen={setOpen} open={open} />
+      <ShoppingBag css={css} itemOrder={itemOrder} orderData={orderData} setOpen={setOpen} open={open} />
     </header>
   );
 }

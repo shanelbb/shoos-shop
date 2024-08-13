@@ -34,15 +34,19 @@ export default function Gallery(props) {
   useEffect(() => {
     // handle the itemOrder in the setOrderData - array of objects
     if (itemOrder) {
-      for (const item of orderData) {
-        if (item.style === itemOrder.style && item.size === itemOrder.size) {
-          item.quantity += itemOrder.quantity;
-          item.price += parseFloat((itemOrder.price * itemOrder.quantity).toFixed(2));
-          setOrderData(orderData);
-          return;
+      if (orderData) {
+        for (const item of orderData) {
+          if (item.style === itemOrder.style && item.size === itemOrder.size) {
+            item.quantity = item.quantity + itemOrder.quantity;
+            item.price = parseFloat((itemOrder.price * itemOrder.quantity).toFixed(2)) + item.price;
+            setOrderData([...orderData]);
+          } else {
+            setOrderData([...orderData, itemOrder]);
+          }
         }
+      } else {
+        setOrderData([itemOrder]);
       }
-      setOrderData([...orderData, itemOrder]);
     }
   }, [itemOrder]);
 

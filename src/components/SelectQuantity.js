@@ -1,3 +1,6 @@
+import { set } from "mongoose";
+import { useEffect } from "react";
+
 /* eslint-disable react/prop-types */
 export default function SelectQuantity(props) {
   const { quantity, setQuantity } = props;
@@ -10,6 +13,7 @@ export default function SelectQuantity(props) {
   const subtractQty = () => {
     quantity > minQty ? setQuantity(quantity - 1) : setQuantity(minQty);
   };
+
   const handleQty = e => {
     if (e.target.value > maxQty) {
       setQuantity(maxQty);
@@ -20,8 +24,8 @@ export default function SelectQuantity(props) {
       return;
     }
     setQuantity(e.target.value);
-    setQuantity(quantity);
   };
+
   return (
     <form onChange={handleQty} action='' className='setQuantity'>
       <label htmlFor='qty' className='qty'>
