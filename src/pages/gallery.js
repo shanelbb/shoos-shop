@@ -21,7 +21,7 @@ export default function Gallery(props) {
       })
       .catch(err => {
         setError(err);
-        return <p className='errorMessage'>Sorry! We are having trouble displaying the shoos. </p>;
+        return <p className='errorMessage'>Sorry! We are having trouble displaying the shoos. {err}</p>;
       });
   }, [category]);
 
