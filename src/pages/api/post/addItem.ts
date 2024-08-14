@@ -6,17 +6,22 @@ import prisma from "lib/prisma";
 import type { NextApiRequest, NextApiResponse } from "next";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  const { itemOrder, bag_id } = req.body;
+  const { orderData, bag_id } = req.body;
+
+  const addedItems = orderData.map(item => {
+    return {
+      bag_id: bag_id,
+      product_id: item.product_id,
+      size: item.size,
+      unit_quantity: item.quantity,
+      total_unit_price: item.price,
+    };
+  });
+
   if (req.method === "POST") {
     try {
-      const added_item = await prisma.added_Item.create({
-        data: {
-          bag_id: bag_id,
-          product_id: itemOrder.product_id,
-          size: itemOrder.size,
-          unit_quantity: itemOrder.quantity,
-          total_unit_price: itemOrder.price,
-        },
+      const added_item = await prisma.added_Item.createMany({
+        data: addedItems,
       });
       res.json(added_item);
       console.log("Item added");

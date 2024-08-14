@@ -6,7 +6,7 @@ import SelectSize from "./SelectSize";
 
 /* eslint-disable react/prop-types */
 export default function GalleryItem(props) {
-  const { shoe, category, setItemOrder, setProduct } = props;
+  const { shoe, category, setItemOrder, setProduct, addItemToBag } = props;
 
   const [quantity, setQuantity] = useState(0);
   const [selectedSize, setSelectedSize] = useState("6");
@@ -22,7 +22,7 @@ export default function GalleryItem(props) {
       size: Number(selectedSize),
       quantity: quantity,
     };
-    console.log("itemData QTY: ", itemData.quantity);
+
     if (itemData.quantity > 0) {
       setItemOrder(itemData);
     }

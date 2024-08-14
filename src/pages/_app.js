@@ -13,8 +13,38 @@ export default function App({ Component, pageProps }) {
   const [product, setProduct] = useState();
   const [productInfo, setProductInfo] = useState([]);
   const [category, setCategory] = useState();
-  // const [quantity, setQuantity] = useState(0);
-  // const [selectedSize, setSelectedSize] = useState("6");
+  const [orderQty, setOrderQty] = useState(0);
+  const [orderSummary, setOrderSummary] = useState([])
+
+  const addItemToBag = () => {
+    // return if no itemOrder
+    if (!itemOrder) return;
+
+    // if no cart, create cart with item
+    if (!orderData) {
+      setOrderData([itemOrder]);
+      return;
+    }
+
+    // If item exists in cart, update only that item
+    if (orderData.some(item => item.product_id === itemOrder.product_id && item.size === itemOrder.size)) {
+      const currentState = [...orderData];
+
+      const newOrderData = currentState.map(item => {
+        if (item.product_id === itemOrder.product_id && item.size === itemOrder.size) {
+          item.quantity = item.quantity + itemOrder.quantity;
+          const newPrice = itemOrder.price * itemOrder.quantity + item.price;
+          item.price = parseFloat(newPrice.toFixed(2));
+        }
+        return item;
+      });
+      setOrderData(newOrderData);
+      return;
+    }
+
+    // if item not in cart, add new item to cart
+    setOrderData([...orderData, itemOrder]);
+  };
 
   return (
     <>
@@ -25,7 +55,7 @@ export default function App({ Component, pageProps }) {
         <link rel='icon' href='/favicon.png' />
       </Head>
 
-      <Header itemOrder={itemOrder} orderData={orderData} setOrderTotal={setOrderTotal} orderTotal={orderTotal} category={category} setCategory={setCategory} />
+      <Header itemOrder={itemOrder} orderData={orderData} setOrderTotal={setOrderTotal} orderTotal={orderTotal} category={category} setCategory={setCategory} addItemToBag={addItemToBag} />
       <main>
         <Component
           {...pageProps}
@@ -39,6 +69,11 @@ export default function App({ Component, pageProps }) {
           setOrderTotal={setOrderTotal}
           product={product}
           setProduct={setProduct}
+          addItemToBag={addItemToBag}
+          orderQty={orderQty}
+          setOrderQty={setOrderQty}
+          orderSummary={orderSummary}
+          setOrderSummary={setOrderSummary}
           // quantity={quantity}
           // setQuantity={setQuantity}
           // selectedSize={selectedSize}

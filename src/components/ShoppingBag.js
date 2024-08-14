@@ -31,7 +31,6 @@ export default function ShoppingBag(props) {
     console.log("Shopping Bag: Changed first render to false");
     let sum = 0;
     if (orderData) {
-      console.log(orderData);
       orderData.forEach(item => (sum += item.price));
       setOrderTotal(parseFloat(sum.toFixed(2)));
     }

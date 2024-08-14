@@ -6,17 +6,16 @@ import prisma from "lib/prisma";
 import type { NextApiRequest, NextApiResponse } from "next";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  const { orderData } = req.body;
+  const { orderSummary } = req.body;
 
   if (req.method === "POST") {
     try {
       const shopping_bag = await prisma.shopping_Bag.create({
         data: {
-          all_items_quantity: 3,
-          total_price: 300,
-          completed: false,
+          all_items_quantity: orderSummary.orderQty,
+          total_price: orderSummary.orderTotal,
+          completed: true,
           user_id: 1,
-          addedItems: orderData.addedItems,
         },
       });
       res.json(shopping_bag);

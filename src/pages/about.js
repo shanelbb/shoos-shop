@@ -40,8 +40,8 @@ export default function About() {
             <div className='mission'>
               <h5>Our Mission</h5>
               <p>
-                At Shoos, we are committed to stepping lightly on the planet while making bold strides in fashion. Our mission is to offer a curated collection of stylish, eco-friendly footwear that empowers individuals to express themselves without boundaries. We believe in doing good for the
-                world, from sustainable sourcing to ethical production, and in creating a space where everyone is welcome, regardless of gender. At Shoos, every step you take is a step toward a more inclusive, conscious, and vibrant future.
+                At Shoos, we blend modern style with social responsibility, offering footwear that not only elevates your look but also makes a positive impact. Our mission is to deliver cutting-edge designs that reflect your unique style, while championing ethical practices that respect people and
+                the planet. With every step, you're not just moving forward in fashion—you're contributing to a better world.
               </p>
             </div>
           </section>

@@ -5,10 +5,10 @@ import { useEffect, useState } from "react";
 
 /* eslint-disable react/prop-types */
 export default function Checkout(props) {
-  const { orderData, orderTotal } = props;
+  const { orderData, orderTotal, itemOrder, orderQty, setOrderQty } = props;
 
-  const [orderQty, setOrderQty] = useState(0);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [orderRef, setOrderRef] = useState();
 
   useEffect(() => {
     let qty = 0;
@@ -18,12 +18,21 @@ export default function Checkout(props) {
     }
   }, [orderData]);
 
-  // addOrderDetails().then(data => {
-  //   addItemDetails(data.id);
-  // });
+  const updateDatabase = () => {
+    setIsSubmitted(true);
+    addOrderDetails().then(data => {
+      addItemDetails(data.id);
+    });
+  };
 
   const addOrderDetails = async () => {
-    const body = { orderData };
+    const orderSummary = {
+      orderQty,
+      orderTotal,
+      completed: true,
+      user_id: null,
+    };
+    const body = { orderSummary };
 
     const response = await fetch("/api/post/addOrder", {
       method: "POST",
@@ -35,13 +44,14 @@ export default function Checkout(props) {
   };
 
   const addItemDetails = async bag_id => {
-    const body = { itemOrder, bag_id };
+    const body = { orderData, bag_id };
     const response = await fetch("/api/post/addItem", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(body),
     });
     const data = await response.json();
+    setOrderRef(bag_id);
   };
 
   return (
@@ -135,7 +145,7 @@ export default function Checkout(props) {
                     <input type='text' id='postCode' placeholder='Postal Code' maxLength='7' minLength='6'></input>
                   </div>
                 </div>
-                <button type='submit' className='reviewSubmit' onClick={() => setIsSubmitted(true)}>
+                <button type='submit' className='reviewSubmit' onClick={updateDatabase}>
                   Complete Payment
                 </button>
               </form>
@@ -143,7 +153,7 @@ export default function Checkout(props) {
           ) : (
             <section className='orderConfirmation'>
               <h5>Your order has been received!</h5>
-              <p>Order Reference: 1234</p>
+              <p>Order Reference: 74667-{orderRef}</p>
               <p>Please allow 5-7 business days for shipping.</p>
               <p>Thank you for shopping at Shoos.</p>
             </section>

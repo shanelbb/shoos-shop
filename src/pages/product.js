@@ -8,7 +8,7 @@ import UserReviews from "../components/UserReviews";
 
 /* eslint-disable react/prop-types */
 export default function ProductPage(props) {
-  const { itemOrder, setItemOrder, orderData, setOrderData, productInfo, setProductInfo, setOrderTotal, product, setProduct } = props;
+  const { product, addItemToBag, setItemOrder } = props;
   const [sioImages, setSIOImages] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -16,6 +16,24 @@ export default function ProductPage(props) {
   const [quantity, setQuantity] = useState(0);
   const [selectedSize, setSelectedSize] = useState("6");
   const { productId } = router.query;
+
+  const updateItem = () => {
+    const itemData = {
+      brand: product.brand,
+      style: product.style,
+      src: product.image_url,
+      price: product.price,
+      product_id: product.id,
+      size: Number(selectedSize),
+      quantity: quantity,
+    };
+
+    if (itemData.quantity > 0) {
+      setItemOrder(itemData);
+    }
+
+    addItemToBag();
+  };
 
   useEffect(() => {
     const fetchSIOImages = async () => {
@@ -25,6 +43,9 @@ export default function ProductPage(props) {
           const { sio_urls } = data;
           const sios = sio_urls.filter(img => img.product_id === Number(productId));
           setSIOImages(sios);
+        })
+        .catch(err => {
+          setError("There was an error loading products: ", err);
         });
     };
 
@@ -42,10 +63,6 @@ export default function ProductPage(props) {
   if (error) return <p className='errorMessage'>{error}</p>;
 
   if (!product) return <p className='errorMessage'>Sorry, there is no info available for that shoo.</p>;
-
-  const updateItem = () => {
-    // Logic to add the item to the shopping bag
-  };
 
   return (
     <div className='wrapper'>
