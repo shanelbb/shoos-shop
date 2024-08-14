@@ -67,7 +67,7 @@ export default function ProductPage(props) {
         </div>
       </section>
       <section className='seeItOn'>
-        <h3>See them on:</h3>
+        <h5>See them on:</h5>
         <div className='seeItOnImages'>
           {sioImages.length > 0 ? (
             sioImages.map((image, index) => <Image key={index} src={image.sio_url} alt={`See it on image ${index + 1}`} width={200} height={200} style={{ width: "100%", maxWidth: "320px", height: "auto", objectFit: "cover" }} />)

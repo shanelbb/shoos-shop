@@ -6,12 +6,12 @@ export default function ReviewForm() {
         <form>
           <div className='userInfo'>
             <label htmlFor='name'></label>
-            <input className='nameInput' type='text' id='name' placeholder='Name (optional)'></input>
+            <input className='nameInput' type='text' id='name' placeholder='Name'></input>
             <label htmlFor='email'></label>
-            <input type='email' id='email' placeholder='Email (optional)'></input>
+            <input type='email' id='email' placeholder='Email'></input>
           </div>
           <label htmlFor='review'></label>
-          <textarea className='reviewInput' placeholder='Your Review:' name='review' id='review'></textarea>
+          <textarea className='reviewInput' placeholder='Your Review:' name='review' id='review' required></textarea>
           <button type='submit' className='reviewSubmit'>
             Submit Review
           </button>

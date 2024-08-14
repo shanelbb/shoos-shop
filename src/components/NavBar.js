@@ -54,6 +54,9 @@ export default function NavBar() {
             Boots
           </Link>
         </li>
+        <li className='categoryLi'>
+          <Link href='/about'>About Us</Link>
+        </li>
 
         <li className='hamburger' onClick={toggleMenu}></li>
       </ul>

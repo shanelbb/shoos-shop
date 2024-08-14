@@ -145,7 +145,7 @@ export default function Checkout(props) {
               <h5>Your order has been received!</h5>
               <p>Order Reference: 1234</p>
               <p>Please allow 5-7 business days for shipping.</p>
-              <p>Thank you for shopping with shoos.</p>
+              <p>Thank you for shopping at Shoos.</p>
             </section>
           )}
         </div>

@@ -121,7 +121,7 @@ a {
 }
 
 .hamburger {
-  display: initial;
+  display: none;
   margin: 15px 0 15px 0;
   width: 35px;
   height: 24px;
@@ -271,29 +271,28 @@ a {
   height: 350px;
 }
 
-.mission,
-.checkout {
-  margin: 0 auto;
-  padding: 100px 30px 0px;
-  width: 90%;
-  max-width: 1000px;
+.about {
+  margin: 100px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 50px;
+  width: 100%;
+  max-width: 1250px;
+}
+
+.mission {
   font-family: Helvetica, Arial, sans-serif;
   font-size: 1rem;
   line-height: 1.5;
-}
-
-.aboutImgAndQuote {
-  width: 100%;
-  max-width: 800px;
-  display: grid;
-  justify-content: center;
-  padding: 50px;
-  margin: 0 auto;
+  width: 60%;
+  max-width: 550px;
 }
 
 .aboutImg {
   border: 1px solid #000;
-  width: 100%;
+  width: 40%;
   max-width: 650px;
   padding: 20px;
 }
@@ -306,7 +305,7 @@ a {
   margin: 30px auto;
   padding: 40px 0 0;
   width: 100%;
-  max-width: 450px;
+  max-width: 650px;
   font-family: Helvetica, Arial, sans-serif;
   font-size: 30px;
   font-weight: bold;
@@ -416,7 +415,7 @@ a {
 .seeItOn {
   max-width: 1000px;
   padding: 50px 0px;
-  margin: 0 auto;
+  margin: 50px auto 30px;
 }
 
 .seeItOnImages {
@@ -424,6 +423,7 @@ a {
   flex-wrap: wrap;
   gap: 20px;
   width: 100%;
+  padding-top: 20px;
 }
 
 .legal {
@@ -703,8 +703,13 @@ textarea {
 }
 
 .checkout {
-  max-width: 800px;
   margin: 0 auto;
+  padding: 50px 0px;
+  width: 90%;
+  max-width: 600px;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 1rem;
+  line-height: 1.5;
 }
 
 .itemOrderSummary {
@@ -911,6 +916,14 @@ footer p {
 }
 
 @media (max-width: 768px) {
+  .categoryLi {
+    display: none;
+  }
+
+  .hamburger {
+    display: block;
+  }
+
   .category {
     width: 50%;
   }
@@ -932,10 +945,6 @@ footer p {
 }
 
 @media (max-width: 610px) {
-  .categoryLi {
-    display: none;
-  }
-
   .category {
     width: 65%;
   }
