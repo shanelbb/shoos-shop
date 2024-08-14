@@ -1,14 +1,13 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
 /* eslint-disable react/prop-types */
 export default function ShoppingBag(props) {
-  const { itemOrder, orderData, orderTotal, css, setOpen } = props;
-
-  const [shoppingBag, setShoppingBag] = useState();
+  const { orderData, setOrderTotal, orderTotal, css, setOpen } = props;
 
   const ref = useRef(null);
+  const isFirstRender = useRef(true);
 
   useEffect(() => {
     const handleOutSideClick = event => {
@@ -24,11 +23,19 @@ export default function ShoppingBag(props) {
     };
   }, [ref]);
 
-  // useEffect(() => {
-  //     let sum = 0;
-  //     orderData.forEach(item => (sum += item.price));
-  //     setOrderTotal(parseFloat(sum.toFixed(2)));
-  // }, [orderData]);
+  useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
+    console.log("Shopping Bag: Changed first render to false");
+    let sum = 0;
+    if (orderData) {
+      console.log(orderData);
+      orderData.forEach(item => (sum += item.price));
+      setOrderTotal(parseFloat(sum.toFixed(2)));
+    }
+  }, [orderData]);
 
   return (
     <div className='shoppingBag' style={css} ref={ref}>
@@ -65,7 +72,7 @@ export default function ShoppingBag(props) {
         )}
         <div className='total'>
           <p>Total:</p>
-          <p>${orderTotal === 0 ? "0.00" : orderTotal}</p>
+          <p>${orderTotal ? orderTotal : "0.00"}</p>
         </div>
       </div>
       <div className='shoppingBtns'>

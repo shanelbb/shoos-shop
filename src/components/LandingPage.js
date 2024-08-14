@@ -49,7 +49,7 @@ export default function LandingPage() {
           <h2>Dress Shoes</h2>
         </Link>
       </div>
-      <div className='banner' style={{ backgroundImage: 'url("./assets/banners/boots.jpg")' }}>
+      <div className='banner landingBanner4' style={{ backgroundImage: 'url("./assets/banners/boots.jpg")' }}>
         <Link
           href={{
             pathname: "/gallery",

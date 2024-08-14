@@ -22,6 +22,7 @@ export default function GalleryItem(props) {
       size: Number(selectedSize),
       quantity: quantity,
     };
+    console.log("itemData QTY: ", itemData.quantity);
     if (itemData.quantity > 0) {
       setItemOrder(itemData);
     }

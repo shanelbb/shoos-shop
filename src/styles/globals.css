@@ -259,10 +259,9 @@ a {
   background-image: url(.././assets/banners/dressShoes.jpg);
 }
 .landingBanner4 {
-  background-image: url(.././assets/banners/boots.jpg);
+  /* background-image: url(.././assets/banners/boots.jpg); */
   margin-bottom: 50px;
 }
-
 .banner {
   background-size: cover;
   background-position: 50%;
@@ -747,6 +746,53 @@ textarea {
 .orderTotals {
   text-align: right;
   padding-left: 40px;
+}
+
+.payment {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto 50px;
+}
+
+.cardInfo {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.cardInfo input {
+  margin-bottom: 20px;
+  padding: 8px 10px;
+  width: 33%;
+  max-width: 400px;
+}
+
+.addressInfo {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding-top: 20px;
+}
+
+.addressInfo input {
+  margin-bottom: 20px;
+  padding: 8px 10px;
+}
+
+.addressDetails {
+  display: flex;
+  gap: 20px;
+}
+.addressDetails input {
+  width: 50%;
+}
+
+.orderConfirmation {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 30px 30px 50px;
+  text-align: center;
 }
 
 footer {

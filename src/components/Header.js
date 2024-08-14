@@ -7,7 +7,7 @@ import ShoppingBag from "./ShoppingBag";
 
 /* eslint-disable react/prop-types */
 export default function Header(props) {
-  const { itemOrder, orderData, category, setCategory } = props;
+  const { setOrderTotal, orderTotal, orderData, category, setCategory } = props;
 
   const [bagCount, setBagCount] = useState(0);
 
@@ -42,7 +42,7 @@ export default function Header(props) {
         </div>
       </div>
       <NavBar setCategory={setCategory} category={category} />
-      <ShoppingBag css={css} itemOrder={itemOrder} orderData={orderData} setOpen={setOpen} open={open} />
+      <ShoppingBag css={css} orderTotal={orderTotal} setOrderTotal={setOrderTotal} orderData={orderData} setOpen={setOpen} open={open} />
     </header>
   );
 }

@@ -1,15 +1,18 @@
 import Category from "@/components/Category";
 import GalleryItem from "@/components/GalleryItem";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 /* eslint-disable react/prop-types */
 export default function Gallery(props) {
   const { itemOrder, setItemOrder, orderData, setOrderData, productInfo, setProductInfo, setOrderTotal, setProduct } = props;
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
   const router = useRouter();
   const { category } = router.query;
+
+  const isFirstRender = useRef(true);
 
   useEffect(() => {
     fetch("./api/fetchProducts")
@@ -23,31 +26,42 @@ export default function Gallery(props) {
         setError(err);
         return <p className='errorMessage'>Sorry! We are having trouble displaying the shoos. {err}</p>;
       });
-  }, [category]);
+  }, []);
 
-  // useEffect(() => {
-  //     let sum = 0;
-  //     orderData.forEach(item => (sum += item.price));
-  //     setOrderTotal(sum);
-  // }, [orderData]);
-
+  // handle the itemOrder in the setOrderData - array of objects
   useEffect(() => {
-    // handle the itemOrder in the setOrderData - array of objects
-    if (itemOrder) {
-      if (orderData) {
-        for (const item of orderData) {
-          if (item.style === itemOrder.style && item.size === itemOrder.size) {
-            item.quantity = item.quantity + itemOrder.quantity;
-            item.price = parseFloat((itemOrder.price * itemOrder.quantity).toFixed(2)) + item.price;
-            setOrderData([...orderData]);
-          } else {
-            setOrderData([...orderData, itemOrder]);
-          }
-        }
-      } else {
-        setOrderData([itemOrder]);
-      }
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
     }
+    console.log("Gallery: Changed first render to false");
+    // return if no itemOrder
+    if (!itemOrder) return;
+
+    // if no cart, create cart with item
+    if (!orderData) {
+      setOrderData([itemOrder]);
+      return;
+    }
+
+    // If item exists in cart, update only that item
+    if (orderData.some(item => item.product_id === itemOrder.product_id && item.size === itemOrder.size)) {
+      const currentState = [...orderData];
+
+      const newOrderData = currentState.map(item => {
+        if (item.product_id === itemOrder.product_id && item.size === itemOrder.size) {
+          item.quantity = item.quantity + itemOrder.quantity;
+          const newPrice = itemOrder.price * itemOrder.quantity + item.price;
+          item.price = parseFloat(newPrice.toFixed(2));
+        }
+        return item;
+      });
+      setOrderData(newOrderData);
+      return;
+    }
+
+    // if item not in cart, add new item to cart
+    setOrderData([...orderData, itemOrder]);
   }, [itemOrder]);
 
   if (loading) return <p className='loading'>Loading...</p>;
@@ -58,7 +72,7 @@ export default function Gallery(props) {
       <Category category={category} />
       <div className='gallery wrapper'>
         {productInfo.map((shoe, index) => {
-          return <GalleryItem shoe={shoe} key={index} category={category} setItemOrder={setItemOrder} setProduct={setProduct} />;
+          return <GalleryItem shoe={shoe} key={index} category={category} setItemOrder={setItemOrder} setProduct={setProduct} setOrderTotal={setOrderTotal} />;
         })}
       </div>
     </>

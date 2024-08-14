@@ -25,7 +25,7 @@ export default function App({ Component, pageProps }) {
         <link rel='icon' href='/favicon.png' />
       </Head>
 
-      <Header itemOrder={itemOrder} orderData={orderData} orderTotal={orderTotal} category={category} setCategory={setCategory} />
+      <Header itemOrder={itemOrder} orderData={orderData} setOrderTotal={setOrderTotal} orderTotal={orderTotal} category={category} setCategory={setCategory} />
       <main>
         <Component
           {...pageProps}
@@ -35,6 +35,7 @@ export default function App({ Component, pageProps }) {
           itemOrder={itemOrder}
           productInfo={productInfo}
           setProductInfo={setProductInfo}
+          orderTotal={orderTotal}
           setOrderTotal={setOrderTotal}
           product={product}
           setProduct={setProduct}
