@@ -1,11 +1,34 @@
-export default function Review() {
+/* eslint-disable react/prop-types */
+export default function Review(props) {
+  const { reviewData } = props;
+  console.log(reviewData);
+
   return (
     <>
-      <article className='reviewContainer'>
-        <h6>User Name</h6>
-        <p className='date'>Date & Time</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla nam, architecto necessitatibus sunt delectus iure! Animi asperiores aut, ipsum voluptatum dicta ipsam, alias, autem quasi debitis adipisci facilis quisquam excepturi.</p>
-      </article>
+      <section className='reviewForm'>
+        {!reviewData ? (
+          <h5>There are no reviews for this product yet. Leave one below!</h5>
+        ) : (
+          reviewData.map(review => {
+            const date = new Date(review.createdAt);
+            const formattedDate = date.toLocaleString("en-US", {
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+              hour: "2-digit",
+              minute: "2-digit",
+            });
+
+            return (
+              <article className='reviewContainer' key={review.id}>
+                <h6>{review.user.name}</h6>
+                <p className='date'>{formattedDate}</p>
+                <p>{review.message}</p>
+              </article>
+            );
+          })
+        )}
+      </section>
     </>
   );
 }

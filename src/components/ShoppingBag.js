@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import { useRouter } from "next/router";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -7,7 +8,9 @@ export default function ShoppingBag(props) {
   const { orderData, setOrderTotal, orderTotal, css, setOpen } = props;
 
   const ref = useRef(null);
-  const isFirstRender = useRef(true);
+
+  const router = useRouter();
+  const { category } = router.query;
 
   useEffect(() => {
     const handleOutSideClick = event => {
@@ -24,17 +27,16 @@ export default function ShoppingBag(props) {
   }, [ref]);
 
   useEffect(() => {
-    if (isFirstRender.current) {
-      isFirstRender.current = false;
-      return;
-    }
-    console.log("Shopping Bag: Changed first render to false");
     let sum = 0;
     if (orderData) {
       orderData.forEach(item => (sum += item.price));
       setOrderTotal(parseFloat(sum.toFixed(2)));
     }
   }, [orderData]);
+
+  const handleClick = () => {
+    setOpen(false);
+  };
 
   return (
     <div className='shoppingBag' style={css} ref={ref}>
@@ -76,11 +78,16 @@ export default function ShoppingBag(props) {
       </div>
       <div className='shoppingBtns'>
         <Link href='/checkout'>
-          <button className='checkoutBtn' onClick={() => setOpen(false)}>
+          <button className='checkoutBtn' onClick={handleClick}>
             Checkout
           </button>
         </Link>
-        <Link href='/'>
+        <Link
+          href={{
+            pathname: "/gallery",
+            query: { category: category },
+          }}
+        >
           <button onClick={() => setOpen(false)}>Continue Shopping</button>
         </Link>
       </div>

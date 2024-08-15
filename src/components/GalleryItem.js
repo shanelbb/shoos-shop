@@ -25,6 +25,7 @@ export default function GalleryItem(props) {
 
     if (itemData.quantity > 0) {
       setItemOrder(itemData);
+      addItemToBag(itemData);
     }
   };
 

@@ -5,8 +5,7 @@ import { useEffect, useState, useRef } from "react";
 
 /* eslint-disable react/prop-types */
 export default function Gallery(props) {
-  const { itemOrder, setItemOrder, orderData, setOrderData, productInfo, setProductInfo, setOrderTotal, setProduct, addItemToBag } = props;
-  const didMount = useRef(false);
+  const { itemOrder, setItemOrder, productInfo, setProductInfo, setOrderTotal, setProduct, addItemToBag } = props;
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -26,14 +25,6 @@ export default function Gallery(props) {
         return <p className='errorMessage'>Sorry! We are having trouble displaying the shoos. {err}</p>;
       });
   }, []);
-
-  useEffect(() => {
-    if (!didMount.current) {
-      didMount.current = true;
-      return;
-    }
-    addItemToBag();
-  }, [itemOrder]);
 
   if (loading) return <p className='loading'>Loading...</p>;
   if (error) return <p className='errorMessage'>{error}</p>;

@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 
 /* eslint-disable react/prop-types */
 export default function Checkout(props) {
-  const { orderData, orderTotal, itemOrder, orderQty, setOrderQty } = props;
+  const { orderData, setOrderData, orderTotal, setOrderTotal, orderQty, setOrderQty } = props;
 
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [orderRef, setOrderRef] = useState();
@@ -20,9 +20,13 @@ export default function Checkout(props) {
 
   const updateDatabase = () => {
     setIsSubmitted(true);
-    addOrderDetails().then(data => {
-      addItemDetails(data.id);
-    });
+    addOrderDetails()
+      .then(data => {
+        addItemDetails(data.id);
+      })
+      .then(setOrderData(null))
+      .then(setOrderTotal(0))
+      .then(setOrderQty(0));
   };
 
   const addOrderDetails = async () => {
@@ -68,7 +72,7 @@ export default function Checkout(props) {
         <div className='wrapper'>
           <section className='checkout'>
             <h5>Order Summary</h5>
-            {orderData ? (
+            {orderData && !isSubmitted ? (
               orderData.map((shoe, index) => {
                 return (
                   <div className='itemOrderSummary' key={index}>
@@ -97,6 +101,7 @@ export default function Checkout(props) {
             ) : (
               <p>Your Shopping Bag is Empty</p>
             )}
+
             <div className='orderSummary'>
               <div>
                 <p>Items Qty:</p>
