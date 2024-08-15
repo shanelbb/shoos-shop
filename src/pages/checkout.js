@@ -1,11 +1,11 @@
 /* eslint-disable react/react-in-jsx-scope */
 // import { useState } from "react";
-import Image from "next/image";
 import { useEffect, useState } from "react";
+import Image from "next/image";
 
 /* eslint-disable react/prop-types */
 export default function Checkout(props) {
-  const { orderData, setOrderData, orderTotal, setOrderTotal, orderQty, setOrderQty } = props;
+  const { orderData, setOrderData, orderTotal, setOrderTotal, orderQty, setOrderQty, setBagCount } = props;
 
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [orderRef, setOrderRef] = useState();
@@ -26,7 +26,8 @@ export default function Checkout(props) {
       })
       .then(setOrderData(null))
       .then(setOrderTotal(0))
-      .then(setOrderQty(0));
+      .then(setOrderQty(0))
+      .then(setBagCount(0));
   };
 
   const addOrderDetails = async () => {

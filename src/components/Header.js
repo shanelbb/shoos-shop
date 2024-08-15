@@ -7,9 +7,7 @@ import ShoppingBag from "./ShoppingBag";
 
 /* eslint-disable react/prop-types */
 export default function Header(props) {
-  const { setOrderTotal, orderTotal, orderData, category, setCategory } = props;
-
-  const [bagCount, setBagCount] = useState(0);
+  const { setOrderTotal, orderTotal, orderData, category, setCategory, bagCount, setBagCount } = props;
 
   useEffect(() => {
     if (orderData) {

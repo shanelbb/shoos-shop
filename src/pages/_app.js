@@ -17,6 +17,7 @@ export default function App({ Component, pageProps }) {
   const [orderSummary, setOrderSummary] = useState([]);
   const [reviewData, setReviewData] = useState([]);
   const [reviews, setReviews] = useState([]);
+  const [bagCount, setBagCount] = useState(0);
 
   const addItemToBag = itemOrder => {
     // return if no itemOrder
@@ -57,7 +58,7 @@ export default function App({ Component, pageProps }) {
         <link rel='icon' href='/favicon.png' />
       </Head>
 
-      <Header itemOrder={itemOrder} orderData={orderData} setOrderTotal={setOrderTotal} orderTotal={orderTotal} category={category} setCategory={setCategory} addItemToBag={addItemToBag} />
+      <Header itemOrder={itemOrder} orderData={orderData} setOrderTotal={setOrderTotal} orderTotal={orderTotal} category={category} setCategory={setCategory} addItemToBag={addItemToBag} bagCount={bagCount} setBagCount={setBagCount} />
       <main>
         <Component
           {...pageProps}
@@ -80,6 +81,7 @@ export default function App({ Component, pageProps }) {
           setReviewData={setReviewData}
           reviews={reviews}
           setReviews={setReviews}
+          setBagCount={setBagCount}
         />
       </main>
       <Footer />
