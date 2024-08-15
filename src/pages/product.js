@@ -137,7 +137,6 @@ export default function ProductPage(props) {
       </section>
 
       {reviewsLoading ? <p className='loading'>Loading...</p> : <Review reviewData={reviewData} />}
-
       {!isSubmitted ? (
         <ReviewForm productId={productId} setIsSubmitted={setIsSubmitted} setSubmittedReview={setSubmittedReview} />
       ) : (

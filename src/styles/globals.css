@@ -670,6 +670,12 @@ textarea {
   flex-direction: column;
 }
 
+.reviewError {
+  padding-top: 30px;
+  margin: 0;
+  font-family: Helvetica, Arial, sans-serif;
+  font-weight: lighter;
+}
 .userInfo {
   display: flex;
   justify-content: space-between;

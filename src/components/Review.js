@@ -6,8 +6,9 @@ export default function Review(props) {
   return (
     <>
       <section className='reviewForm'>
+        <h5>User Reviews</h5>
         {!reviewData ? (
-          <h5>There are no reviews for this product yet. Leave one below!</h5>
+          <p className='reviewError'>There are no reviews for this product yet. Leave one below!</p>
         ) : (
           reviewData.map(review => {
             const date = new Date(review.createdAt);
